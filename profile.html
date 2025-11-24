@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexHub | Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h2 class="page-title">My Profile</h2>
+    <p class="page-sub">Manage your account details</p>
+
+    <!-- PROFILE PICTURE SECTION -->
+    <div class="profile-container">
+
+        <img id="profileImage" src="assets/default-pfp.png" class="profile-pic">
+
+        <label for="pfpUpload" class="upload-btn">Change Photo</label>
+        <input type="file" id="pfpUpload" accept="image/*" style="display:none;">
+    </div>
+
+    <!-- USER INFO -->
+    <div class="info-box">
+        <p class="info-label">Username</p>
+        <p class="info-value">@micheal</p>
+    </div>
+
+    <div class="info-box">
+        <p class="info-label">Email</p>
+        <p class="info-value">example@gmail.com</p>
+    </div>
+
+    <div class="info-box">
+        <p class="info-label">Referral Code</p>
+        <p class="info-value">INV738293</p>
+    </div>
+
+    <div class="info-box">
+        <p class="info-label">Account Status</p>
+        <p class="info-value green">Activated</p>
+    </div>
+
+    <button class="save-btn">Save Changes</button>
+
+    <!-- SPACE FOR BOTTOM NAV -->
+    <div style="height: 100px;"></div>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+        <a href="dashboard.html" class="nav-item">Dashboard</a>
+        <a href="tasks.html" class="nav-item">Tasks</a>
+        <a href="referrals.html" class="nav-item">Referrals</a>
+        <a href="wallet.html" class="nav-item">Wallet</a>
+        <a href="profile.html" class="nav-item active">Profile</a>
+    </div>
+
+<script>
+    // Preview uploaded image instantly
+    const upload = document.getElementById("pfpUpload");
+    const img = document.getElementById("profileImage");
+
+    upload.addEventListener("change", () => {
+        const file = upload.files[0];
+        if (file) {
+            img.src = URL.createObjectURL(file);
+        }
+    });
+</script>
+
+</body>
+  </html>
