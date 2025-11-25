@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexHub – Referrals</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1 class="page-title">Referral Center</h1>
+
+    <!-- Referral Link Box -->
+    <div class="card">
+        <h2>Your Referral Link</h2>
+        <p class="small-text">Share this link and earn ₦1,000 per valid referral.</p>
+
+        <div class="ref-box">
+            <input type="text" id="refLink" value="https://apexhub.com/signup?ref=inv48392" readonly>
+            <button onclick="copyRefLink()">Copy</button>
+        </div>
+    </div>
+
+    <!-- Referral Stats -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Valid Referrals</h3>
+            <p class="stat-value">0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Pending Referrals</h3>
+            <p class="stat-value">0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Total Referral Earnings</h3>
+            <p class="stat-value">₦0</p>
+        </div>
+
+    </div>
+
+    <!-- Milestone Rewards -->
+    <div class="card">
+        <h2>Referral Milestones</h2>
+        <p class="small-text">Unlock extra bonuses when you reach each referral target.</p>
+
+        <ul class="milestone-list">
+            <li>10 Referrals — <span>₦3,000</span></li>
+            <li>50 Referrals — <span>₦5,000</span></li>
+            <li>100 Referrals — <span>₦8,000</span></li>
+            <li>200 Referrals — <span>₦10,000</span></li>
+            <li>500 Referrals — <span>₦15,000</span></li>
+        </ul>
+    </div>
+
+    <!-- Referral Lists -->
+    <div class="card">
+        <h2>Valid Referrals</h2>
+        <p class="small-text">Your referrals who have activated their account.</p>
+
+        <div class="empty-box">None yet.</div>
+    </div>
+
+    <div class="card">
+        <h2>Pending Referrals</h2>
+        <p class="small-text">Users who signed up but haven't paid activation.</p>
+
+        <div class="empty-box">None yet.</div>
+    </div>
+
+    <!-- Leaderboard Button -->
+    <a href="leaderboard.html" class="btn-full">
+        View Leaderboard
+    </a>
+
+</div>
+
+<script>
+function copyRefLink() {
+    const input = document.getElementById("refLink");
+    input.select();
+    input.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(input.value);
+    alert("Referral link copied!");
+}
+</script>
+
+</body>
+  </html>
