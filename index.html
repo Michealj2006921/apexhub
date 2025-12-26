@@ -1,106 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ApexHub - Earn Daily</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #1a1a1a, #000);
-            color: white;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NovaX — Trade. Earn. Scale.</title>
 
-        header {
-            padding: 25px 10px;
-            background: #111;
-            font-size: 26px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+  <style>
+    :root {
+      --emerald: #10B981;
+      --emerald-dark: #059669;
+      --amber: #F59E0B;
+      --amber-light: #FBBF24;
 
-        .hero {
-            padding: 50px 20px;
-        }
+      --bg-dark: #0B0F14;
+      --bg-card: #111827;
+      --text-main: #E5E7EB;
+      --text-muted: #9CA3AF;
+    }
 
-        .hero h1 {
-            font-size: 35px;
-            margin-bottom: 10px;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        .hero p {
-            font-size: 18px;
-            opacity: 0.8;
-            margin-bottom: 40px;
-        }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: radial-gradient(circle at top, #111827, var(--bg-dark));
+      color: var(--text-main);
+      text-align: center;
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            margin: 10px;
-            background: #ffbb00;
-            color: #000;
-            font-weight: bold;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 18px;
-        }
+    header {
+      padding: 22px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(to right, var(--emerald), var(--emerald-dark));
+      color: #022C22;
+    }
 
-        .btn:hover {
-            background: #ffcc33;
-        }
+    .hero {
+      padding: 70px 20px;
+    }
 
-        .features {
-            margin-top: 50px;
-            padding: 40px 20px;
-            background: #111;
-        }
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
 
-        .features h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
+    .hero span {
+      color: var(--emerald);
+    }
 
-        .features p {
-            font-size: 17px;
-            opacity: 0.85;
-        }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
 
-        footer {
-            padding: 20px;
-            background: #000;
-            opacity: 0.7;
-            font-size: 14px;
-        }
-    </style>
+    .btn {
+      display: inline-block;
+      padding: 15px 34px;
+      margin: 10px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: #111827;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: var(--amber-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--emerald);
+      color: var(--emerald);
+    }
+
+    .btn-secondary:hover {
+      background: var(--emerald);
+      color: #022C22;
+    }
+
+    .features {
+      background: var(--bg-card);
+      padding: 50px 20px;
+      margin-top: 40px;
+    }
+
+    .features h2 {
+      font-size: 30px;
+      margin-bottom: 25px;
+      color: var(--emerald);
+    }
+
+    .features p {
+      font-size: 17px;
+      line-height: 1.9;
+      color: var(--text-muted);
+    }
+
+    footer {
+      padding: 20px;
+      font-size: 14px;
+      color: var(--text-muted);
+      background: #020617;
+    }
+  </style>
 </head>
+
 <body>
 
-    <header>ApexHub</header>
+  <header>NovaX</header>
 
-    <section class="hero">
-        <h1>fvck it,it doesn't work</h1>
-        <p>Get ₦60 every day + Special Rewards Every 10 Days.  
-        Refer friends & earn huge milestone bonuses.</p>
+  <section class="hero">
+    <h1>Welcome to <span>NovaX</span></h1>
+    <p>
+      Trade crypto, earn rewards, run ads, and scale your digital hustle —  
+      all inside one powerful platform.
+    </p>
 
-        <a href="signup.html" class="btn">Create Account</a>
-        <a href="login.html" class="btn">Login</a>
-    </section>
+    <a href="#" class="btn btn-primary">Get Started</a>
+    <a href="#" class="btn btn-secondary">Open Dashboard</a>
+  </section>
 
-    <section class="features">
-        <h2>Why ApexHub?</h2>
-        <p>✔ Guaranteed daily earnings<br>
-           ✔ Referral bonuses & milestones<br>
-           ✔ Fast payouts<br>
-           ✔ No KYC required<br>
-           ✔ Safe & transparent earning system</p>
-    </section>
+  <section class="features">
+    <h2>Why NovaX?</h2>
+    <p>
+      ✔ Crypto ↔ Fiat Exchange<br>
+      ✔ SMM Growth Services<br>
+      ✔ Ads & Promotion Hub<br>
+      ✔ Secure Wallet System<br>
+      ✔ Built for Speed & Scale
+    </p>
+  </section>
 
-    <footer>
-        © 2025 ApexHub. All rights reserved.
-    </footer>
+  <footer>
+    © 2025 NovaX. All rights reserved.
+  </footer>
 
 </body>
-  </html>
+</html>
