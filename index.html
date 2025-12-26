@@ -9,12 +9,13 @@
 
 <style>
 :root {
-  --emerald: #10B981;
-  --amber: #F59E0B;
-  --text-main: #E5E7EB;
-  --text-muted: #9CA3AF;
-  --bg-dark-1: #0B0F14;
-  --bg-dark-2: #111827;
+  --plasma: #8855ff;
+  --plasma-alt: #c084fc;
+  --magenta: #f472b6;
+  --deep-violet: #090019;
+  --ink: #120427;
+  --text-main: #f4f4ff;
+  --text-muted: #c9c6eb;
 }
 
 *,
@@ -25,96 +26,124 @@
 
 html, body {
   margin: 0;
-  padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* lock to single screen */
+  overflow: hidden;
+  font-family: "Inter", system-ui, sans-serif;
   color: var(--text-main);
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg-dark-1);
 }
 
-/* ===== BACKGROUND LAYERS ===== */
+/* ===== BACKGROUND ===== */
 body {
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(circle at 18% 28%, rgba(16,185,129,0.18), transparent 42%),
-    radial-gradient(circle at 82% 68%, rgba(245,158,11,0.17), transparent 46%),
-    linear-gradient(135deg, #05070c 0%, #0b0f14 40%, #05070c 100%);
+    radial-gradient(circle at 18% 30%, rgba(136,85,255,0.25), transparent 55%),
+    radial-gradient(circle at 82% 72%, rgba(244,114,182,0.22), transparent 52%),
+    radial-gradient(circle at 50% 50%, rgba(49,0,105,0.75), transparent 70%),
+    linear-gradient(135deg, var(--deep-violet), var(--ink) 60%, #060012);
+  backdrop-filter: blur(2px);
 }
 
+/* broad neon streaks */
 body::before,
 body::after {
   content: "";
   position: absolute;
-  inset: -25%;
-  z-index: -2;
+  inset: -30%;
   pointer-events: none;
-  opacity: 0.5;
-  filter: blur(1px);
+  z-index: -2;
+  filter: blur(1.2px);
   mix-blend-mode: screen;
-  transform-origin: center;
 }
 
 body::before {
   background:
-    repeating-linear-gradient(
-      115deg,
-      rgba(16,185,129,0.12),
-      rgba(16,185,129,0.12) 1px,
-      transparent 70px
-    );
-  animation: flowLines 22s linear infinite;
+    conic-gradient(from 0deg at 50% 50%,
+      rgba(136,85,255,0.05) 0deg,
+      rgba(136,85,255,0.4) 45deg,
+      rgba(244,114,182,0.1) 120deg,
+      rgba(136,85,255,0.3) 200deg,
+      rgba(244,114,182,0.05) 270deg,
+      rgba(136,85,255,0.4) 360deg);
+  animation: swirl 26s linear infinite;
 }
 
 body::after {
   background:
     repeating-linear-gradient(
-      -125deg,
-      rgba(245,158,11,0.09),
-      rgba(245,158,11,0.09) 1px,
-      transparent 90px
-    );
-  animation: flowLines 28s linear infinite reverse;
+      125deg,
+      rgba(196,128,252,0.12),
+      rgba(196,128,252,0.12) 1px,
+      transparent 65px);
+  opacity: 0.45;
+  animation: drift 18s ease-in-out infinite alternate;
 }
 
-@keyframes flowLines {
-  0%   { transform: rotate(0deg) translateY(0); }
-  50%  { transform: rotate(3deg) translateY(-6%); }
-  100% { transform: rotate(0deg) translateY(0); }
+@keyframes swirl {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-/* Floating glow elements */
+@keyframes drift {
+  0%   { transform: translate3d(-4%, -2%, 0) scale(1); }
+  50%  { transform: translate3d(3%, 4%, 0) scale(1.05); }
+  100% { transform: translate3d(-2%, -3%, 0) scale(1); }
+}
+
+/* luminous vortex ring */
+.vortex {
+  position: absolute;
+  inset: 12% 18%;
+  z-index: -1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.18) 0, transparent 55%),
+    conic-gradient(from 90deg,
+      rgba(252, 214, 255, 0.55),
+      rgba(136,85,255,0.05),
+      rgba(136,85,255,0.4),
+      rgba(244,114,182,0.25),
+      rgba(136,85,255,0.05));
+  filter: blur(18px);
+  opacity: 0.7;
+  animation: pulse 14s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { transform: rotate(0deg) scale(0.98); opacity: 0.65; }
+  50%     { transform: rotate(15deg) scale(1.05); opacity: 0.85; }
+}
+
+/* floating light orbs */
 .glow-orb {
   position: absolute;
   width: 420px;
   height: 420px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(16,185,129,0.25), transparent 70%);
-  filter: blur(10px);
+  background: radial-gradient(circle, rgba(179,119,255,0.35), transparent 65%);
+  filter: blur(8px);
+  opacity: 0.65;
   z-index: -1;
-  pointer-events: none;
-  animation: orbFloat 18s ease-in-out infinite;
+  animation: orbFloat 16s ease-in-out infinite;
 }
 
-.glow-orb:nth-child(2) {
-  background: radial-gradient(circle, rgba(245,158,11,0.23), transparent 70%);
-  animation-duration: 24s;
+.glow-orb:nth-of-type(2) {
+  background: radial-gradient(circle, rgba(244,114,182,0.3), transparent 65%);
+  animation-duration: 22s;
 }
 
 @keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.65; }
-  50%      { transform: translate(-30px, -20px) scale(1.05); opacity: 0.85; }
+  0%,100% { transform: translate3d(0,0,0) scale(1); }
+  50%     { transform: translate3d(-40px, 20px, 0) scale(1.08); }
 }
 
 /* ===== CONTENT ===== */
 main {
   position: relative;
   z-index: 1;
-  width: 100%;
   height: 100%;
-  padding: clamp(2.5rem, 6vw, 4.5rem);
+  padding: clamp(2.6rem, 7vw, 4.8rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,60 +152,57 @@ main {
 .content {
   max-width: min(960px, 90vw);
   display: grid;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
+  gap: clamp(1.4rem, 3vw, 2.7rem);
 }
 
 .logo {
   font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: clamp(2.2rem, 4vw, 2.7rem);
   font-weight: 700;
-  font-size: clamp(2.1rem, 4vw, 2.6rem);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-main);
   display: inline-flex;
   align-items: center;
-  gap: 0.35em;
+  gap: 0.3em;
 }
 
 .logo span {
-  padding: 0.12em 0.45em;
+  padding: 0.1em 0.4em;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--emerald), rgba(16,185,129,0.35));
-  color: #02130f;
-  box-shadow: 0 0 18px rgba(16, 185, 129, 0.28);
+  background: linear-gradient(135deg, var(--plasma), rgba(136,85,255,0.4));
+  color: #220045;
+  box-shadow: 0 0 22px rgba(136,85,255,0.35);
 }
 
 .hero {
   display: grid;
-  gap: 1.4rem;
+  gap: 1.3rem;
 }
 
 .hero h1 {
   margin: 0;
   font-family: "Space Grotesk", "Inter", sans-serif;
-  font-weight: 700;
-  font-size: clamp(2.6rem, 5vw, 3.8rem);
-  line-height: 1.15;
-  letter-spacing: 0.01em;
+  font-size: clamp(2.6rem, 5.2vw, 3.85rem);
+  line-height: 1.18;
   text-transform: uppercase;
 }
 
 .hero h1 span {
-  color: var(--amber);
-  text-shadow: 0 0 18px rgba(245, 158, 11, 0.35);
+  color: var(--magenta);
+  text-shadow: 0 0 24px rgba(244,114,182,0.55);
 }
 
 .hero p {
   margin: 0;
-  font-size: clamp(1rem, 2.2vw, 1.1rem);
-  line-height: 1.7;
   color: var(--text-muted);
+  font-size: clamp(1rem, 2.1vw, 1.12rem);
+  line-height: 1.7;
   max-width: 640px;
 }
 
 .features {
   display: grid;
-  gap: clamp(0.75rem, 2vw, 1.2rem);
+  gap: clamp(0.85rem, 2.3vw, 1.2rem);
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
@@ -184,138 +210,111 @@ main {
   position: relative;
   padding: 1.15rem 1.3rem;
   border-radius: 18px;
-  background: rgba(17, 24, 39, 0.55);
-  border: 1px solid rgba(16,185,129,0.3);
+  background: rgba(22, 9, 40, 0.65);
+  border: 1px solid rgba(155, 87, 255, 0.35);
   box-shadow:
-    0 8px 24px rgba(0,0,0,0.35),
-    inset 0 0 22px rgba(16,185,129,0.08);
+    0 12px 26px rgba(18, 0, 58, 0.45),
+    inset 0 0 28px rgba(136,85,255,0.15);
   backdrop-filter: blur(12px);
   font-weight: 500;
   letter-spacing: 0.01em;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  transition: transform 0.4s ease, border 0.4s ease, box-shadow 0.4s ease;
+  gap: 0.75rem;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .feature-card::before {
   content: "";
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--emerald), var(--amber));
-  box-shadow: 0 0 14px rgba(16,185,129,0.8);
+  background: linear-gradient(135deg, var(--plasma-alt), var(--magenta));
+  box-shadow: 0 0 16px rgba(196,128,252,0.7);
   flex-shrink: 0;
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(245,158,11,0.45);
+  transform: translateY(-6px);
+  border-color: rgba(244,114,182,0.55);
   box-shadow:
-    0 14px 32px rgba(16,185,129,0.16),
-    inset 0 0 22px rgba(245,158,11,0.14);
+    0 18px 34px rgba(93, 0, 153, 0.35),
+    inset 0 0 28px rgba(244,114,182,0.2);
 }
 
 /* CTA buttons */
 .cta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 0.9rem;
 }
 
 .cta a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  padding: 0.95rem 2.3rem;
+  padding: 0.95rem 2.5rem;
   border-radius: 999px;
   font-weight: 600;
   font-size: 1rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease, color 0.28s ease;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--amber), #fbbf24);
-  color: #1f2937;
-  box-shadow: 0 0 25px rgba(245,158,11,0.42);
+  background: linear-gradient(135deg, var(--magenta), #feb2d1);
+  color: #270033;
+  box-shadow: 0 0 28px rgba(244,114,182,0.48);
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 0 36px rgba(245,158,11,0.55);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 0 38px rgba(244,114,182,0.6);
 }
 
 .btn-outline {
-  border: 2px solid rgba(16,185,129,0.75);
-  color: var(--emerald);
-  background: rgba(16,185,129,0.08);
+  border: 2px solid rgba(136,85,255,0.75);
+  color: var(--plasma-alt);
+  background: rgba(136,85,255,0.08);
 }
 
 .btn-outline:hover {
-  background: var(--emerald);
-  color: #02231c;
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 0 25px rgba(16,185,129,0.35);
+  background: var(--plasma-alt);
+  color: #220045;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 0 26px rgba(136,85,255,0.45);
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  main {
-    padding: clamp(1.8rem, 6vw, 3rem);
-  }
-  .hero {
-    text-align: left;
-  }
-  .hero p {
-    max-width: 100%;
-  }
-  .features {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
+  main { padding: clamp(2.1rem, 7vw, 3rem); }
+  .features { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 }
 
 @media (max-width: 540px) {
-  .content {
-    gap: 1.4rem;
-  }
-  .logo {
-    font-size: 1.9rem;
-  }
-  .hero h1 {
-    font-size: clamp(2.2rem, 10vw, 2.6rem);
-  }
-  .cta {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .cta a {
-    width: 100%;
-  }
+  .content { gap: 1.4rem; }
+  .hero h1 { font-size: clamp(2.3rem, 11vw, 2.7rem); }
+  .cta { flex-direction: column; }
+  .cta a { width: 100%; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- Decorative glows -->
-<div class="glow-orb" style="top: 8%; left: 6%;"></div>
-div class="glow-orb" style="bottom: 12%; right: 8%;"></div>
+<div class="vortex"></div>
+<div class="glow-orb" style="top: 6%; left: 12%;"></div>
+<div class="glow-orb" style="bottom: 10%; right: 14%;"></div>
 
 <main>
   <div class="content">
-    <div class="logo">
-      Nova<span>X</span>
-    </div>
+    <div class="logo">Nova<span>X</span></div>
 
     <section class="hero">
       <h1>The Future of <span>Digital Growth</span></h1>
       <p>
-        Harness the NovaX ecosystem to trade crypto, monetize social reach, launch
-        high-impact campaigns, and secure your assets—all in one next-gen platform
-        designed for digital hustlers.
+        Join NovaX to navigate the metaverse of revenue—trade crypto seamlessly, monetize your social footprint, deploy viral promotions, and secure every asset with next-level protection.
       </p>
     </section>
 
@@ -333,20 +332,6 @@ div class="glow-orb" style="bottom: 12%; right: 8%;"></div>
     </nav>
   </div>
 </main>
-
-<script>
-// Optional parallax shimmer (disable by removing this script)
-const body = document.body;
-const strength = 12;
-
-window.addEventListener("pointermove", (event) => {
-  const { innerWidth, innerHeight } = window;
-  const x = (event.clientX / innerWidth - 0.5) * strength;
-  const y = (event.clientY / innerHeight - 0.5) * strength;
-  body.style.setProperty("--parallax-x", `${x}px`);
-  body.style.setProperty("--parallax-y", `${y}px`);
-});
-</script>
 
 </body>
 </html>
